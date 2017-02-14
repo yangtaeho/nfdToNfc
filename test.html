@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=960">
+<meta name="apple-mobile-web-app-title" content="NFD To NFC Converter">
+<meta property="og:title" content="NFD To NFC Converter">
+<meta name="twitter:title" content="NFD To NFC Converter">
+<meta name="twitter:description" content="NFD To NFC Converter. iOS 한글을 윈도우즈 한글로 바꿔줍니다.">
+<meta name="author" content="yangbuk84@green-mango.co.kr">
+<title>NFD to NFC Converter</title>
+<script type="text/javascript" src="nfdToNfc.js"></script>
+<script type="text/javascript">
+	var dom = {};
+	var nfdToNfc = {};
+	nfdToNfc.convert = function(){
+		var res = convertStringToWindow(dom.nfdStr.value);
+		return res;
+	};
+	nfdToNfc.render = function(str){
+		dom.nfcStr.value = str;
+		dom.info.style.display = 'block';
+	};
+	nfdToNfc.run = function(){
+		var str = nfdToNfc.convert();
+		nfdToNfc.render(str);
+	};
+
+	window.onload = function(){
+		//dom ready
+		dom.info = document.getElementById('info');
+		dom.nfdStr = document.getElementById('nfdStr');
+		dom.nfcStr = document.getElementById('nfcStr');
+	};
+</script>
+</head>
+<body>
+	<h3>NFD to NFC Converter</h3>
+	<label for="nfdStr">iOS 한글</label>
+	<input type="text" name="nfdStr" id="nfdStr"/>
+	<br>
+	<label for="nfcStr">windows 한글</label>
+	<input type="text" name="nfcStr" id="nfcStr"/>
+	<p id="info" style="display: none;">위 인풋창의 텍스트를 복사해서 사용하세요.</p>
+	<br>
+	<a href="javascript:;" onclick="nfdToNfc.run(); return false;">변환</a>
+</body>
+</html>
